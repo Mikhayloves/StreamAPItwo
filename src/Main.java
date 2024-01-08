@@ -36,20 +36,8 @@ public class Main {
 
 
         List<Person> personList = persons.stream()
-                .filter(x -> {
-                    if (x.getSex() == Person.Sex.MAN) {
-                        if (x.getAge() >= 18 && x.getAge() <= 65) {
-                            return true;
-                        }
-                    } else if (x.getSex() == Person.Sex.WOMAN) {
-                        if (x.getAge() >= 18 && x.getAge() <= 60) {
-                            return true;
-                        }
-                    } else {
-                        return false;
-                    }
-                    return false;
-                })
+                .filter(x-> x.getAge()>=18)
+                .filter(x-> x.getSex()== Person.Sex.MAN ? x.getAge()<= 65 : x.getAge() <= 60)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .collect(Collectors.toList());
         System.out.println(" работоспособных людей с высшим образованием :");
